@@ -26,15 +26,15 @@ class FavouritesActivity : AppCompatActivity(), FavouritesScreen {
     }
 
     override fun showFavourites() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("missing") //Get the favourites Random Doggo(s) and init the UI
     }
 
     fun showDetailsFragment(){
-
+        TODO("missing") //Show the Details Fragment and add the Random Doggo to it
     }
 
     fun hideDetailsFragment(){
-
+        TODO("missing") //Hide the details Fragment and show the favourites list again
     }
 
     fun navigateToSearchActivity(){

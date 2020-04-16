@@ -1,5 +1,6 @@
 package bme.hu.randomdoggo.views
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import bme.hu.randomdoggo.R
+import bme.hu.randomdoggo.presenters.DetailsPresenter
 import bme.hu.randomdoggo.views.interfaces.DetailsScreen
 
 private const val id_const = "id"
@@ -20,6 +22,18 @@ class DetailsFragment : Fragment(), DetailsScreen {
     private var url: String? = null
     private var byte: String? = null
     private var type: String? = null
+
+    private lateinit var detailsScreen: DetailsPresenter;
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        detailsScreen.attachScreen(this)
+    }
+
+    override fun onDetach() {
+        detailsScreen.detachScreen()
+        super.onDetach()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +66,6 @@ class DetailsFragment : Fragment(), DetailsScreen {
     }
 
     override fun removeRandomDoggo() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("missing") //Remove the Random Doggo with DetailsScreen's function (from database)
     }
 }

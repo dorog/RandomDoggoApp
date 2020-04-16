@@ -27,11 +27,11 @@ class SearchActivity : AppCompatActivity(), SearchScreen {
     }
 
     override fun searchRandomDoggo() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("Missing") //Get a Random Doggo from SearchPresenter and Show it (UI)
     }
 
     override fun addRandomDoggoToFavourites(randomDoggo: RandomDoggo) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("Missing") //Save the Random Doggo with SearchPresenter (database) and UI update
     }
 
     fun navigateToFavourites(){

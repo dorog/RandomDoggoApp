@@ -1,12 +1,12 @@
-package bme.hu.randomdoggo.views
+package bme.hu.randomdoggo.ui.favourites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import bme.hu.randomdoggo.R
-import bme.hu.randomdoggo.presenters.FavouritesPresenter
-import bme.hu.randomdoggo.views.interfaces.FavouritesScreen
+import bme.hu.randomdoggo.ui.search.SearchActivity
 
-class FavouritesActivity : AppCompatActivity(), FavouritesScreen {
+class FavouritesActivity : AppCompatActivity(),
+    FavouritesScreen {
 
     private lateinit var favouritesPresenter: FavouritesPresenter;
 
@@ -38,6 +38,6 @@ class FavouritesActivity : AppCompatActivity(), FavouritesScreen {
     }
 
     fun navigateToSearchActivity(){
-        favouritesPresenter.navigate(this, SearchActivity::class.java)
+        TODO("missing") //Start the Search Activity
     }
 }

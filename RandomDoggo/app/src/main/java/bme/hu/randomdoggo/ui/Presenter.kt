@@ -1,4 +1,4 @@
-package bme.hu.randomdoggo.presenters.abstracts
+package bme.hu.randomdoggo.ui
 
 abstract class Presenter<S> {
 

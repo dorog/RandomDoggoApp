@@ -1,6 +1,6 @@
-package bme.hu.randomdoggo.views.interfaces
+package bme.hu.randomdoggo.ui.search
 
-import bme.hu.randomdoggo.models.RandomDoggo
+import bme.hu.randomdoggo.model.RandomDoggo
 
 interface SearchScreen {
     fun searchRandomDoggo()

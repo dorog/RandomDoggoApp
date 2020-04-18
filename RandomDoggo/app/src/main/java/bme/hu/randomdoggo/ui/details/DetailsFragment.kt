@@ -1,4 +1,4 @@
-package bme.hu.randomdoggo.views
+package bme.hu.randomdoggo.ui.details
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import bme.hu.randomdoggo.R
-import bme.hu.randomdoggo.presenters.DetailsPresenter
-import bme.hu.randomdoggo.views.interfaces.DetailsScreen
 
 private const val id_const = "id"
 private const val url_const = "url"

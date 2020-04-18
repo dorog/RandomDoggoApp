@@ -1,4 +1,4 @@
-package bme.hu.randomdoggo.views.interfaces
+package bme.hu.randomdoggo.ui.details
 
 interface DetailsScreen {
     fun removeRandomDoggo()

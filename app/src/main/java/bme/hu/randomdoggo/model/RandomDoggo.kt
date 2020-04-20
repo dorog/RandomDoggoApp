@@ -10,7 +10,7 @@ data class RandomDoggo(
     @SerializedName("url")
     var url: String,
 
-    @SerializedName("byte")
+    @SerializedName("fileSizeBytes")
     var byte: Int,
 
     @SerializedName("type")

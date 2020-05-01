@@ -23,4 +23,24 @@ data class RandomDoggo(
     @ColumnInfo()
     @SerializedName("type")
     var type: String
-)
+
+
+){
+    override fun equals(other: Any?): Boolean {
+        if(other !is RandomDoggo)
+            return false
+
+        if(other.id != id)
+            return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id ?: 0
+        result = 31 * result + url.hashCode()
+        result = 31 * result + byte
+        result = 31 * result + type.hashCode()
+        return result
+    }
+}

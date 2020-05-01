@@ -6,8 +6,7 @@ import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.ui.favourites.FavouritesActivity
 
-class SearchActivity : AppCompatActivity(),
-    SearchScreen {
+class SearchActivity : AppCompatActivity(), SearchScreen {
 
     private lateinit var searchPresenter: SearchPresenter
 

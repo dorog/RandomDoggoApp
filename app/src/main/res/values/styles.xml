@@ -8,9 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name = "SearchAddToFavourites">
+        <item name="colorAccent">@color/redButton</item>
+    </style>
+
     <style name ="AppTheme.NoActionBar">
         <item name = "windowActionBar">false</item>
         <item name = "windowNoTitle">true</item>
+        <item name="colorAccent">@color/colorButton</item>
     </style>
 
 </resources>

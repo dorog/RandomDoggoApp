@@ -8,4 +8,7 @@
     <string name="credits_menu">Credits</string>
     <string name = "navigation_drawer_open">Open Navigation drawer</string>
     <string name = "navigation_drawer_close">Close Navigation drawer</string>
+    <string name="randomdoggo_picture">RandomDoggo picture</string>
+    <string name="random_picture">Random Picture</string>
+    <string name="add_to_favourites">Add to Favourites</string>
 </resources>

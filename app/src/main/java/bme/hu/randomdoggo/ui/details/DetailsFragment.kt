@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import bme.hu.randomdoggo.R
+import bme.hu.randomdoggo.injector
+import javax.inject.Inject
 
 private const val id_const = "id"
 private const val url_const = "url"
@@ -21,10 +23,12 @@ class DetailsFragment : Fragment(), DetailsScreen {
     private var byte: String? = null
     private var type: String? = null
 
-    private lateinit var detailsScreen: DetailsPresenter;
+    @Inject
+    lateinit var detailsScreen: DetailsPresenter;
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        injector.inject(this)
         detailsScreen.attachScreen(this)
     }
 

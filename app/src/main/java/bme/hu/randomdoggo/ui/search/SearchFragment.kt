@@ -1,17 +1,41 @@
 package bme.hu.randomdoggo.ui.search
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import bme.hu.randomdoggo.R
+import bme.hu.randomdoggo.injector
 import bme.hu.randomdoggo.model.RandomDoggo
+import javax.inject.Inject
 
-class SearchActivity : AppCompatActivity(), SearchScreen {
+class SearchFragment : Fragment(), SearchScreen {
 
-    private lateinit var searchPresenter: SearchPresenter
+    @Inject
+    lateinit var searchPresenter: SearchPresenter
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this)
+        searchPresenter.attachScreen(this)
+    }
+
+    override fun onDetach() {
+        searchPresenter.detachScreen()
+        super.onDetach()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_screen)
     }
 
     override fun onStart() {

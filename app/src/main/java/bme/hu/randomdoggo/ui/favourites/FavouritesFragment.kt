@@ -1,18 +1,40 @@
 package bme.hu.randomdoggo.ui.favourites
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import bme.hu.randomdoggo.R
-import bme.hu.randomdoggo.ui.search.SearchActivity
+import bme.hu.randomdoggo.injector
+import javax.inject.Inject
 
-class FavouritesActivity : AppCompatActivity(),
-    FavouritesScreen {
+class FavouritesFragment : Fragment(), FavouritesScreen {
 
-    private lateinit var favouritesPresenter: FavouritesPresenter;
+    @Inject
+    lateinit var favouritesPresenter: FavouritesPresenter;
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_favourites, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this)
+        favouritesPresenter.attachScreen(this)
+    }
+
+    override fun onDetach() {
+        favouritesPresenter.detachScreen()
+        super.onDetach()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favourites_screen)
     }
 
     override fun onStart() {

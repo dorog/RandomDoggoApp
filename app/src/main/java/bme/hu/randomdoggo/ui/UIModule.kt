@@ -4,6 +4,7 @@ import android.content.Context
 import bme.hu.randomdoggo.interactor.randomDoggo.RandomDoggoInteractor
 import bme.hu.randomdoggo.ui.details.DetailsPresenter
 import bme.hu.randomdoggo.ui.favourites.FavouritesPresenter
+import bme.hu.randomdoggo.ui.main.MainPresenter
 import bme.hu.randomdoggo.ui.search.SearchPresenter
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,10 @@ class UIModule(private val context: Context) {
 
     @Provides
     fun context() = context
+
+    @Provides
+    @Singleton
+    fun mainPresenter() = MainPresenter()
 
     @Provides
     @Singleton

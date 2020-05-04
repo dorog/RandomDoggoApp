@@ -11,4 +11,7 @@
     <string name="randomdoggo_picture">RandomDoggo picture</string>
     <string name="random_picture">Random Picture</string>
     <string name="add_to_favourites">Add to Favourites</string>
+    <string name="random_doggo">Random Doggo</string>
+    <string name="cuz_we_lovin_dogs">\'Cuz we lovin\' dogs!</string>
+    <string name="transparented_header_icon">Transparented header icon</string>
 </resources>

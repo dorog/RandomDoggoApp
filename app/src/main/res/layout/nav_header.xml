@@ -1,31 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
-    android:background="@color/colorNavHeader"
+    android:layout_height="120dp"
     android:layout_gravity="bottom"
-    android:padding="16dp"
+    android:background="@color/colorNavHeader"
+    android:orientation="horizontal"
+    android:padding="15dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src = "@mipmap/ic_launcher"
-        android:contentDescription="TODO" />
+        android:layout_width="80dp"
+        android:layout_height="76dp"
+        android:contentDescription="@string/transparented_header_icon"
+        android:src="@drawable/transparented_icon_small"
+        android:layout_gravity="center_vertical"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="Coding in Flow"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="We love dogs!">
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:shadowColor="#000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1.5"
+            android:text="@string/random_doggo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cuz_we_lovin_dogs"
+            android:textSize="15sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
 
 </LinearLayout>

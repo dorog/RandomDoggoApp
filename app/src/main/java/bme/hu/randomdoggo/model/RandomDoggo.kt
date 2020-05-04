@@ -22,7 +22,7 @@ data class RandomDoggo(
 
     @ColumnInfo()
     @SerializedName("type")
-    var type: String
+    var type: String? = null
 
 
 ){

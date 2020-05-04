@@ -1,0 +1,37 @@
+swagger: "2.0"
+info:
+  description: "RandomDoggo API leírás."
+  version: "1.0.0"
+  title: "Random Dog REST Server API"
+  contact:
+    email: "dorogi.x@gmail.com"
+host: "random.dog"
+
+schemes:
+- "https"
+paths:
+  /woof.json:
+    get:
+      summary: "Returns a random dog."
+      operationId: "GetRandomDoggo"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RandomDoggo"
+
+definitions:
+  RandomDoggo:
+    type: "object"
+    required:
+    - "url"
+    - "byte"
+    properties:
+      url:
+        type: "string"
+      byte:
+        type: "integer"
+        format: "int64"
+        

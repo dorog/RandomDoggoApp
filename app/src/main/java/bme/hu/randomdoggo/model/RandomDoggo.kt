@@ -26,6 +26,8 @@ data class RandomDoggo(
 
 
 ){
+    constructor() : this(null, "", 0, null)
+
     override fun equals(other: Any?): Boolean {
         if(other !is RandomDoggo)
             return false

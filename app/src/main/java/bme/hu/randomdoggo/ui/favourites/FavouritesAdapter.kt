@@ -11,8 +11,9 @@ import bme.hu.randomdoggo.model.RandomDoggo
 
 class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutableListOf()) : RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
 
-    fun addDoggos(doggos: List<RandomDoggo>?){
-        doggoList.addAll(doggos!!.asIterable())
+    fun refresh(doggos: List<RandomDoggo>){
+        doggoList.clear()
+        doggoList.addAll(doggos)
         notifyDataSetChanged()
     }
 

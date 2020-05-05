@@ -22,6 +22,4 @@ class RandomDoggoRoomRepository(private val randomDoggoDao: RandomDoggoDao) : Ra
     override fun getAllRandomDoggo(): LiveData<List<RandomDoggo>> {
         return allRandomDoggo
     }
-
-
 }

@@ -5,21 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
 import bme.hu.randomdoggo.model.RandomDoggo
-import kotlinx.android.synthetic.main.fragment_favourites.*
-import java.util.*
+import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
 import javax.inject.Inject
+import androidx.lifecycle.Observer
 
 class FavouritesFragment : Fragment(), FavouritesScreen {
 
     @Inject
     lateinit var favouritesPresenter: FavouritesPresenter;
+
+    private lateinit var randomDoggoViewModel: RandomDoggoViewModel
 
     private val adapter by lazy { FavouritesAdapter() }
     private val manager by lazy { LinearLayoutManager(context) }
@@ -52,12 +54,16 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        randomDoggoViewModel = ViewModelProviders.of(this).get(RandomDoggoViewModel::class.java)
+        randomDoggoViewModel.randomDoggos.observe(this, Observer { savedRandomDoggos: List<RandomDoggo> ->
+            randomDoggos = savedRandomDoggos
+            showFavourites()
+        })
     }
 
     override fun onStart() {
         super.onStart()
         favouritesPresenter.attachScreen(this)
-        showFavourites()
     }
 
     override fun onStop() {
@@ -66,12 +72,7 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
     }
 
     override fun showFavourites() {
-        //Toast.makeText(context, "Out of jokes! :( ", Toast.LENGTH_LONG).show()
-        val one = RandomDoggo(null, "http://asd.hu", 10, null)
-        val two = RandomDoggo(null, "http://asd.com", 10, null)
-        val randomDoggos = listOf(one, two)
-
-        adapter.addDoggos(randomDoggos)
+        adapter.refresh(randomDoggos)
     }
 
     fun showDetailsFragment(){

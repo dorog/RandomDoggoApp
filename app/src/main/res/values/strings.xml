@@ -14,4 +14,6 @@
     <string name="random_doggo">Random Doggo</string>
     <string name="cuz_we_lovin_dogs">\'Cuz we lovin\' dogs!</string>
     <string name="transparented_header_icon">Transparented header icon</string>
+    <string name="place_holder_text">text</string>
+    <string name="picture_image_view">Picture Image View</string>
 </resources>

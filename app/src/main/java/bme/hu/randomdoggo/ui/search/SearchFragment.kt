@@ -10,9 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
+import bme.hu.randomdoggo.interactor.randomDoggo.event.GetRandomDoggoEvent
 import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
 import kotlinx.android.synthetic.main.fragment_search.view.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 class SearchFragment : Fragment(), SearchScreen {
@@ -28,6 +31,10 @@ class SearchFragment : Fragment(), SearchScreen {
             val randomDoggo2 = RandomDoggo(null, "abc", 0, null);
             addRandomDoggoToFavourites(randomDoggo2)
             Toast.makeText(context, "Successfully added!", Toast.LENGTH_LONG).show()
+        }
+
+        view.search_randomDoggo.setOnClickListener{ _ ->
+            searchRandomDoggo()
         }
 
         return view
@@ -49,25 +56,20 @@ class SearchFragment : Fragment(), SearchScreen {
         randomDoggoViewModel = ViewModelProviders.of(this).get(RandomDoggoViewModel::class.java)
     }
 
-    override fun onStart() {
-        super.onStart()
-        searchPresenter.attachScreen(this)
-    }
-
     override fun onStop() {
         super.onStop()
         searchPresenter.detachScreen()
     }
 
     override fun searchRandomDoggo() {
-        TODO("Missing") //Get a Random Doggo from SearchPresenter and Show it (UI)
+        searchPresenter.searchRandomDoggo()
+    }
+
+    override fun showRandomDoggo(randomDoggo: RandomDoggo) {
+        Toast.makeText(context, "Successfully arrived!", Toast.LENGTH_LONG).show()
     }
 
     override fun addRandomDoggoToFavourites(randomDoggo: RandomDoggo) {
         randomDoggoViewModel.insert(randomDoggo)
-    }
-
-    fun navigateToFavourites(){
-        TODO("Missing") //Start the Favourites Activity
     }
 }

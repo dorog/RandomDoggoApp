@@ -1,17 +1,22 @@
 package bme.hu.randomdoggo.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
+import bme.hu.randomdoggo.model.RandomDoggo
+import bme.hu.randomdoggo.ui.details.DetailsDialogFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.main_activity.*
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,6 +40,10 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     override fun onStart() {
@@ -75,4 +84,18 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
     }
+
+    override fun showDetails(randomDoggo: RandomDoggo) {
+        val fm: FragmentManager = supportFragmentManager
+
+        Log.d("RANDOMDOGGO", randomDoggo.url)
+        Log.d("RANDOMDOGGO", "" + randomDoggo.type)
+        Log.d("RANDOMDOGGO", "" + randomDoggo.byte)
+
+        val detailsDialogFragment = DetailsDialogFragment.newInstance(randomDoggo)
+
+        detailsDialogFragment.show(fm, "details_dialog_fragment")
+    }
+
+
 }

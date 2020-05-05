@@ -85,6 +85,6 @@ class SearchFragment : Fragment(), SearchScreen {
     }
 
     private fun getType(randomDoggo: RandomDoggo): String{
-        return randomDoggo.url.substringAfterLast("/")
+        return randomDoggo.url.substringAfterLast(".")
     }
 }

@@ -16,4 +16,5 @@
     <string name="transparented_header_icon">Transparented header icon</string>
     <string name="place_holder_text">text</string>
     <string name="picture_image_view">Picture Image View</string>
+    <string name="ok">OK</string>
 </resources>

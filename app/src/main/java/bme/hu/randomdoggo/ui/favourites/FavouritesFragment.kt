@@ -21,7 +21,6 @@ import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
 import javax.inject.Inject
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 
 class FavouritesFragment : Fragment(), FavouritesScreen {

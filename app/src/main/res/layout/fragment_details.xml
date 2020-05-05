@@ -1,14 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.details.DetailsFragment">
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/details_imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"
+        android:background="#000000"
+        android:contentDescription="@string/randomdoggo_picture"
+        android:padding="1dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/icon" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="150dp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight ="1"
+                android:padding = "8dp"
+                android:text="URL:"
+                android:textColor="@color/redButton">
+            </TextView>
+
+            <TextView
+                android:id="@+id/url"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:padding = "8dp"
+                android:text="URL_MISSING :D">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight ="1"
+                android:padding = "8dp"
+                android:text="Byte:"
+                android:textColor="@color/redButton">
+            </TextView>
+
+            <TextView
+                android:id="@+id/byte_"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:padding = "8dp"
+                android:text="BYTE_MISSING :D">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight ="1"
+                android:padding = "8dp"
+                android:text="Type:"
+                android:textColor="@color/redButton">
+            </TextView>
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:padding = "8dp"
+                android:text="Type_MISSING :D">
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/details_ok"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:text="@string/ok"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:layout_margin="10dp">
+    </Button>
+
+</LinearLayout>

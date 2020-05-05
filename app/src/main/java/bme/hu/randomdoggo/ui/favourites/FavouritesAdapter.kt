@@ -1,14 +1,19 @@
 package bme.hu.randomdoggo.ui.favourites
 
+import android.app.Dialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.model.RandomDoggo
 import com.bumptech.glide.Glide
+import org.greenrobot.eventbus.EventBus
 
 class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutableListOf()) : RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
 
@@ -40,6 +45,13 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
         Glide.with(holder.imageView)
                 .load(currentItem.url)
                 .into(holder.imageView)
+
+        holder.imageView.setOnClickListener{
+            val detailsEvent = DetailsEvent()
+            detailsEvent.randomDoggo = RandomDoggo(currentItem.id, currentItem.url, currentItem.byte, currentItem.type)
+
+            EventBus.getDefault().post(detailsEvent)
+        }
     }
 
     override fun getItemCount() = doggoList.size

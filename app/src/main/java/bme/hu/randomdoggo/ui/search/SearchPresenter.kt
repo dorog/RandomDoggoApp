@@ -34,7 +34,6 @@ class SearchPresenter  @Inject constructor(private val executor: Executor, priva
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventMainThread(event: GetRandomDoggoEvent) {
-        Log.d("EVENT", "Event arrived: " + (event.randomDoggo?.url ?: ""))
         if(screen != null){
             if(event.randomDoggo != null){
                 screen?.showRandomDoggo(event.randomDoggo!!)

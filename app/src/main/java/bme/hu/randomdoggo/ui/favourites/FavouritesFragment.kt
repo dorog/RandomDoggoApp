@@ -15,6 +15,8 @@ import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
 import javax.inject.Inject
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 
 class FavouritesFragment : Fragment(), FavouritesScreen {
 
@@ -24,19 +26,34 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
     private lateinit var randomDoggoViewModel: RandomDoggoViewModel
 
     private val adapter by lazy { FavouritesAdapter() }
-    private val manager by lazy { LinearLayoutManager(context) }
-    private var doggo_list: RecyclerView? = null
+    private val manager by lazy { LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false) }
+    private var doggosRecyclerView: RecyclerView? = null
     private var randomDoggos : List<RandomDoggo> = listOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_favourites, container, false)
-        doggo_list = view.findViewById(R.id.doggo_list)
+        doggosRecyclerView = view.findViewById(R.id.doggo_list)
 
-        if (doggo_list is RecyclerView) {
-            doggo_list?.layoutManager = manager
-            doggo_list?.adapter = adapter
+        if (doggosRecyclerView is RecyclerView) {
+            doggosRecyclerView?.setHasFixedSize(true)
+            doggosRecyclerView?.layoutManager = manager
+            doggosRecyclerView?.adapter = adapter
         }
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val randomDoggo = adapter.removeItem(viewHolder)
+                removeRandomDoggoFromDatabase(randomDoggo)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(doggosRecyclerView)
 
         return view
     }
@@ -75,15 +92,11 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
         adapter.refresh(randomDoggos)
     }
 
+    override fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo) {
+        randomDoggoViewModel.delete(randomDoggo)
+    }
+
     fun showDetailsFragment(){
         TODO("missing") //Show the Details Fragment and add the Random Doggo to it
-    }
-
-    fun hideDetailsFragment(){
-        TODO("missing") //Hide the details Fragment and show the favourites list again
-    }
-
-    fun navigateToSearchActivity(){
-        TODO("missing") //Start the Search Activity
     }
 }

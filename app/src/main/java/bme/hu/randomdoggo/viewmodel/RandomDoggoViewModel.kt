@@ -31,7 +31,7 @@ class RandomDoggoViewModel(application: Application): AndroidViewModel(applicati
         repository.addRandomDoggo(randomDoggo)
     }
 
-    fun delete(randomDoggo: RandomDoggo){
+    fun delete(randomDoggo: RandomDoggo) = scope.launch(Dispatchers.IO){
         repository.removeRandomDoggo(randomDoggo)
     }
 

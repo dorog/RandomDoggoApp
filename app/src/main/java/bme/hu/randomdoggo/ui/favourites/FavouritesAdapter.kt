@@ -18,6 +18,14 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
         notifyDataSetChanged()
     }
 
+    fun removeItem(viewholder: RecyclerView.ViewHolder): RandomDoggo{
+        val randomDoggo = doggoList[viewholder.absoluteAdapterPosition]
+        doggoList.removeAt(viewholder.absoluteAdapterPosition)
+        notifyDataSetChanged()
+
+        return randomDoggo
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouritesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.doggo_item, parent, false)
 

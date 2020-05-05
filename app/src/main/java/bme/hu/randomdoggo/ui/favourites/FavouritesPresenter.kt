@@ -13,6 +13,4 @@ class FavouritesPresenter  @Inject constructor(protected val randomDoggoInteract
     override fun detachScreen() {
         super.detachScreen()
     }
-
-    fun getAllRandomDoggoFromDatabase(){}
 }

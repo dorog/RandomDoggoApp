@@ -13,6 +13,4 @@ class DetailsPresenter @Inject constructor(protected val randomDoggoInteractor: 
     override fun detachScreen() {
         super.detachScreen()
     }
-
-    fun removeRandomDoggoFromDatabase(id: Int){}
 }

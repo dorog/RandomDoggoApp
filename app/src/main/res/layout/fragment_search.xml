@@ -34,7 +34,8 @@
             android:textSize="35sp"
             android:layout_gravity="center_horizontal"
             android:padding="30dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:theme="@style/SearchButtonStyle">
         </Button>
 
         <Button

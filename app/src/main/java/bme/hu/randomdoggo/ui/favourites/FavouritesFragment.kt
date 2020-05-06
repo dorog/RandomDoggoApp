@@ -35,7 +35,7 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
     private var doggosRecyclerView: RecyclerView? = null
     private var randomDoggos : List<RandomDoggo> = listOf()
 
-    private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
+    private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#000000"))
     private lateinit var deleteIconWhite: Drawable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {

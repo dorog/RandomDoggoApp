@@ -45,8 +45,9 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         super.onStart()
         mainPresenter.attachScreen(this)
 
-        onNavigationItemSelected(nav_view.menu.getItem(0));
-        nav_view.menu.getItem(0).isChecked = true
+        val defaultFragment = nav_view.menu.getItem(0)
+        onNavigationItemSelected(defaultFragment);
+        defaultFragment.isChecked = true
     }
 
     override fun onStop() {

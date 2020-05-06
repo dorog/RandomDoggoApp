@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_gravity="bottom"
-    android:background="@color/colorNavHeader"
+    android:background="@color/orange"
     android:orientation="horizontal"
     android:padding="4dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">

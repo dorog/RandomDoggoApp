@@ -9,13 +9,13 @@
     </style>
 
     <style name = "SearchAddToFavourites">
-        <item name="colorAccent">@color/redButton</item>
+        <item name="colorAccent">@color/red</item>
     </style>
 
     <style name ="AppTheme.NoActionBar">
         <item name = "windowActionBar">false</item>
         <item name = "windowNoTitle">true</item>
-        <item name="colorAccent">@color/colorButton</item>
+        <item name="colorAccent">@color/orange</item>
     </style>
 
     <style name="MenuItems" parent="AppTheme">

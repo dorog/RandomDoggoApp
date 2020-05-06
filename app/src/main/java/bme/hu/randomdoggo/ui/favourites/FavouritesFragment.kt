@@ -9,19 +9,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
 import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
+import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import javax.inject.Inject
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.ItemTouchHelper
 
 class FavouritesFragment : Fragment(), FavouritesScreen {
 
@@ -36,7 +36,7 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
     private var randomDoggos : List<RandomDoggo> = listOf()
 
     private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
-    private lateinit var deleteIcon: Drawable
+    private lateinit var deleteIconWhite: Drawable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
@@ -49,7 +49,7 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
             doggosRecyclerView?.adapter = adapter
         }
 
-        deleteIcon = ContextCompat.getDrawable(view.context, R.drawable.ic_delete_black_24dp)!!
+        deleteIconWhite = ContextCompat.getDrawable(view.context, R.drawable.ic_delete_white_24dp)!!
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -59,20 +59,19 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val randomDoggo = adapter.removeItem(viewHolder)
                 removeRandomDoggoFromDatabase(randomDoggo)
-                Toast.makeText(context, "Successfully deleted!", Toast.LENGTH_LONG).show()
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
                 val itemView = viewHolder.itemView
 
-                val iconMargin = (itemView.height - deleteIcon.intrinsicHeight) / 2
+                val iconMargin = (itemView.height - deleteIconWhite.intrinsicHeight) / 2
 
                 swipeBackground.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
                 swipeBackground.draw(c)
 
-                deleteIcon.setBounds(itemView.left + iconMargin, itemView.top + iconMargin,
-                        itemView.left + iconMargin + deleteIcon.intrinsicWidth, itemView.bottom - iconMargin)
-                deleteIcon.draw(c)
+                deleteIconWhite.setBounds(itemView.left + iconMargin, itemView.top + iconMargin,
+                        itemView.left + iconMargin + deleteIconWhite.intrinsicWidth, itemView.bottom - iconMargin)
+                deleteIconWhite.draw(c)
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             }
@@ -120,9 +119,6 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
 
     override fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo) {
         randomDoggoViewModel.delete(randomDoggo)
-    }
-
-    fun showDetailsFragment(){
-        TODO("missing") //Show the Details Fragment and add the Random Doggo to it
+        DynamicToast.make(activity!!, "Successfully deleted!", deleteIconWhite).show();
     }
 }

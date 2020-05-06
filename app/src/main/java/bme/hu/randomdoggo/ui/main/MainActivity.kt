@@ -42,13 +42,15 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         nav_view.setNavigationItemSelectedListener(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     override fun onStart() {
         super.onStart()
         mainPresenter.attachScreen(this)
+        mainPresenter.showSearchFragment()
+    }
+
+    override fun onStop() {
+        mainPresenter.detachScreen()
+        super.onStop()
     }
 
     override fun onBackPressed() {

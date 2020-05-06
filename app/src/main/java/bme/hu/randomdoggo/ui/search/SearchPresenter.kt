@@ -1,10 +1,7 @@
 package bme.hu.randomdoggo.ui.search
 
-import android.util.Log
-import android.widget.Toast
 import bme.hu.randomdoggo.interactor.randomDoggo.RandomDoggoInteractor
 import bme.hu.randomdoggo.interactor.randomDoggo.event.GetRandomDoggoEvent
-import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.ui.Presenter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -30,7 +27,9 @@ class SearchPresenter  @Inject constructor(private val executor: Executor, priva
         }
     }
 
-    fun addRandomDoggoToDatabase(){}
+    fun addRandomDoggoToDatabase(){
+        screen?.addRandomDoggoToFavourites()
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventMainThread(event: GetRandomDoggoEvent) {

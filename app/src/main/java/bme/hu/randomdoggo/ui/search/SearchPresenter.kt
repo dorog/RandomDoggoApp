@@ -1,8 +1,7 @@
 package bme.hu.randomdoggo.ui.search
 
-import androidx.lifecycle.LiveData
 import bme.hu.randomdoggo.database.RandomDoggoRoomDatabase
-import bme.hu.randomdoggo.database.repository.RandomDoggoRoomRepository
+import bme.hu.randomdoggo.database.repository.RandomDoggoRepository
 import bme.hu.randomdoggo.interactor.randomDoggo.RandomDoggoInteractor
 import bme.hu.randomdoggo.interactor.randomDoggo.event.GetRandomDoggoEvent
 import bme.hu.randomdoggo.model.RandomDoggo
@@ -20,14 +19,14 @@ import kotlin.coroutines.CoroutineContext
 
 class SearchPresenter  @Inject constructor(private val executor: Executor, private val randomDoggoInteractor: RandomDoggoInteractor, private val randomDoggoRoomDatabase: RandomDoggoRoomDatabase): Presenter<SearchScreen>() {
 
-    private var randomDoggoRoomRepository: RandomDoggoRoomRepository? = null
+    private var randomDoggoRoomRepository: RandomDoggoRepository
 
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
     init{
-        randomDoggoRoomRepository = RandomDoggoRoomRepository(randomDoggoRoomDatabase.randomDoggoDao())
+        randomDoggoRoomRepository = randomDoggoRoomDatabase.randomDoggoRepository()
     }
 
     override fun attachScreen(screen: SearchScreen) {
@@ -47,7 +46,7 @@ class SearchPresenter  @Inject constructor(private val executor: Executor, priva
     }
 
     fun addRandomDoggoToDatabase(randomDoggo: RandomDoggo) = scope.launch(Dispatchers.IO){
-        randomDoggoRoomRepository!!.addRandomDoggo(randomDoggo)
+        randomDoggoRoomRepository.addRandomDoggo(randomDoggo)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

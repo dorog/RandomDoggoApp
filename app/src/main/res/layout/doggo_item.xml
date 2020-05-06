@@ -26,13 +26,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/type">
+                android:text="@string/byte_">
             </TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/byte_">
+                android:text="@string/type">
             </TextView>
         </LinearLayout>
 
@@ -45,14 +45,14 @@
             android:paddingRight="8dp">
 
             <TextView
-                android:id="@+id/type"
+                android:id="@+id/byte_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/missing">
             </TextView>
 
             <TextView
-                android:id="@+id/byte_"
+                android:id="@+id/type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/missing">

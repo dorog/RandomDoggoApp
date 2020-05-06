@@ -12,7 +12,6 @@ class RandomDoggoRoomRepository(private val randomDoggoDao: RandomDoggoDao) : Ra
 
     @WorkerThread
     override fun addRandomDoggo(randomDoggo: RandomDoggo) {
-        Log.d("REPO", "" + randomDoggo.fileSizeBytes)
         randomDoggoDao.insert(randomDoggo)
     }
 

@@ -18,4 +18,10 @@
         <item name="colorAccent">@color/colorButton</item>
     </style>
 
+    <style name="MenuItems" parent="AppTheme">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
 </resources>

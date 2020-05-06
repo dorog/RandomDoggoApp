@@ -8,19 +8,19 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class RandomDoggo(
 
-        @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     var id: Int? = null,
 
-        @ColumnInfo()
+    @ColumnInfo()
     @SerializedName("url")
     var url: String,
 
-        @ColumnInfo()
+    @ColumnInfo()
     @SerializedName("fileSizeBytes")
     var fileSizeBytes: Int,
 
-        @ColumnInfo()
+    @ColumnInfo()
     @SerializedName("type")
     var type: String? = null
 

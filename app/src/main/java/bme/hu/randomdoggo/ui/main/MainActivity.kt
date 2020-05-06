@@ -1,7 +1,6 @@
 package bme.hu.randomdoggo.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -45,7 +44,9 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
     override fun onStart() {
         super.onStart()
         mainPresenter.attachScreen(this)
-        mainPresenter.showSearchFragment()
+
+        onNavigationItemSelected(nav_view.menu.getItem(0));
+        nav_view.menu.getItem(0).isChecked = true
     }
 
     override fun onStop() {
@@ -89,10 +90,6 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
 
     override fun showDetails(randomDoggo: RandomDoggo) {
         val fm: FragmentManager = supportFragmentManager
-
-        Log.d("RANDOMDOGGO", randomDoggo.url)
-        Log.d("RANDOMDOGGO", "" + randomDoggo.type)
-        Log.d("RANDOMDOGGO", "" + randomDoggo.fileSizeBytes)
 
         val detailsDialogFragment = DetailsDialogFragment.newInstance(randomDoggo)
 

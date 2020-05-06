@@ -29,7 +29,6 @@ class RandomDoggoViewModel(application: Application): AndroidViewModel(applicati
     }
 
     fun insert(randomDoggo: RandomDoggo) = scope.launch(Dispatchers.IO){
-        Log.d("VM", "" + randomDoggo.fileSizeBytes)
         repository.addRandomDoggo(randomDoggo)
     }
 

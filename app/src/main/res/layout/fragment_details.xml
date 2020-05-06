@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight ="1"
                 android:padding = "8dp"
-                android:text="URL:"
+                android:text="@string/url_title"
                 android:textColor="@color/red">
             </TextView>
 
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:padding = "8dp"
-                android:text="URL_MISSING :D">
+                android:text="@string/missing">
             </TextView>
 
         </LinearLayout>
@@ -57,7 +57,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight ="1"
                 android:padding = "8dp"
-                android:text="Byte:"
+                android:text="@string/byte_title"
                 android:textColor="@color/red">
             </TextView>
 
@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:padding = "8dp"
-                android:text="BYTE_MISSING :D">
+                android:text="@string/missing">
             </TextView>
 
         </LinearLayout>
@@ -82,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight ="1"
                 android:padding = "8dp"
-                android:text="Type:"
+                android:text="@string/type_title"
                 android:textColor="@color/red">
             </TextView>
 
@@ -92,7 +92,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:padding = "8dp"
-                android:text="Type_MISSING :D">
+                android:text="@string/missing">
             </TextView>
 
         </LinearLayout>

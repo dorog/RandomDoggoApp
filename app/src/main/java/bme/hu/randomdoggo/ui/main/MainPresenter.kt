@@ -1,10 +1,7 @@
 package bme.hu.randomdoggo.ui.main
 
 import bme.hu.randomdoggo.ui.Presenter
-import bme.hu.randomdoggo.ui.credits.CreditsFragment
 import bme.hu.randomdoggo.ui.favourites.DetailsEvent
-import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
-import bme.hu.randomdoggo.ui.search.SearchFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -22,15 +19,15 @@ class MainPresenter : Presenter<MainScreen>() {
     }
 
     fun showSearchFragment(){
-        screen!!.showFragment(SearchFragment())
+        screen!!.showSearch()
     }
 
     fun showFavouritesFragment(){
-        screen!!.showFragment(FavouritesFragment())
+        screen!!.showFavourites()
     }
 
     fun showCreditsFragment(){
-        screen!!.showFragment(CreditsFragment())
+        screen!!.showCredits()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

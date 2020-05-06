@@ -10,8 +10,6 @@ import bme.hu.randomdoggo.R
 class CreditsFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_credits, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_credits, container, false)
     }
 }

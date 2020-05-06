@@ -11,7 +11,10 @@ import androidx.fragment.app.FragmentTransaction
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
 import bme.hu.randomdoggo.model.RandomDoggo
+import bme.hu.randomdoggo.ui.credits.CreditsFragment
 import bme.hu.randomdoggo.ui.details.DetailsDialogFragment
+import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
+import bme.hu.randomdoggo.ui.search.SearchFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.main_activity.*
 import javax.inject.Inject
@@ -45,9 +48,7 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         super.onStart()
         mainPresenter.attachScreen(this)
 
-        val defaultFragment = nav_view.menu.getItem(0)
-        onNavigationItemSelected(defaultFragment);
-        defaultFragment.isChecked = true
+        setDefaultFragment()
     }
 
     override fun onStop() {
@@ -80,13 +81,31 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         return true
     }
 
-    override fun showFragment(fragment: Fragment) {
+    private fun setDefaultFragment(){
+        val defaultFragment = nav_view.menu.getItem(0)
+        onNavigationItemSelected(defaultFragment);
+        defaultFragment.isChecked = true
+    }
+
+    private fun showFragment(fragment: Fragment) {
         nav_view.menu.close()
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
+    }
+
+    override fun showSearch() {
+        showFragment(SearchFragment())
+    }
+
+    override fun showFavourites() {
+        showFragment(FavouritesFragment())
+    }
+
+    override fun showCredits() {
+        showFragment(CreditsFragment())
     }
 
     override fun showDetails(randomDoggo: RandomDoggo) {
@@ -96,6 +115,4 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
 
         detailsDialogFragment.show(fm, "details_dialog_fragment")
     }
-
-
 }

@@ -1,6 +1,7 @@
 package bme.hu.randomdoggo.ui.main
 
 import bme.hu.randomdoggo.ui.Presenter
+import bme.hu.randomdoggo.ui.credits.CreditsFragment
 import bme.hu.randomdoggo.ui.favourites.DetailsEvent
 import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
 import bme.hu.randomdoggo.ui.search.SearchFragment
@@ -29,7 +30,7 @@ class MainPresenter : Presenter<MainScreen>() {
     }
 
     fun showCreditsFragment(){
-        //screen!!.showFragment(CreditsFragment())
+        screen!!.showFragment(CreditsFragment())
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -18,4 +18,12 @@
     <string name="missing">Missing</string>
     <string name="type">Type</string>
     <string name="byte_">Byte</string>
+    <string name="application_name">Application name:</string>
+    <string name="randomdoggo">RandomDoggo</string>
+    <string name="application_version">Application version:</string>
+    <string name="app_version">1.0</string>
+    <string name="github">GitHub:</string>
+    <string name="github_url">https://github.com/dorog/RandomDoggoApp</string>
+    <string name="developer">Developer:</string>
+    <string name="developer_name">Gábor Dorogi-Kovács</string>
 </resources>

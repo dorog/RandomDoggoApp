@@ -38,47 +38,17 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
     private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#000000"))
     private lateinit var deleteIconWhite: Drawable
 
+    private var successFullyDeletedMessage: String = "Successfully deleted!"
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_favourites, container, false)
+
         doggosRecyclerView = view.findViewById(R.id.doggo_list)
+        setupRecyclerView(doggosRecyclerView!!)
 
-        if (doggosRecyclerView is RecyclerView) {
-            doggosRecyclerView?.setHasFixedSize(true)
-            doggosRecyclerView?.layoutManager = manager
-            doggosRecyclerView?.adapter = adapter
-        }
-
-        deleteIconWhite = ContextCompat.getDrawable(view.context, R.drawable.ic_delete_white_24dp)!!
-
-        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val randomDoggo = adapter.removeItem(viewHolder)
-                removeRandomDoggoFromDatabase(randomDoggo)
-            }
-
-            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
-                val itemView = viewHolder.itemView
-
-                val iconMargin = (itemView.height - deleteIconWhite.intrinsicHeight) / 2
-
-                swipeBackground.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
-                swipeBackground.draw(c)
-
-                deleteIconWhite.setBounds(itemView.left + iconMargin, itemView.top + iconMargin,
-                        itemView.left + iconMargin + deleteIconWhite.intrinsicWidth, itemView.bottom - iconMargin)
-                deleteIconWhite.draw(c)
-
-                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-            }
-        }
-
-        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        itemTouchHelper.attachToRecyclerView(doggosRecyclerView)
+        setupSwipeDelete(view)
 
         return view
     }
@@ -103,22 +73,51 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        favouritesPresenter.attachScreen(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        favouritesPresenter.detachScreen()
-    }
-
     override fun showFavourites() {
         adapter.refresh(randomDoggos)
     }
 
     override fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo) {
         randomDoggoViewModel.delete(randomDoggo)
-        DynamicToast.make(activity!!, "Successfully deleted!", deleteIconWhite).show();
+        DynamicToast.make(activity!!, successFullyDeletedMessage, deleteIconWhite).show();
+    }
+
+    private fun setupRecyclerView(doggosRecyclerView: RecyclerView){
+        doggosRecyclerView.setHasFixedSize(true)
+        doggosRecyclerView.layoutManager = manager
+        doggosRecyclerView.adapter = adapter
+    }
+
+    private fun setupSwipeDelete(view: View) {
+        deleteIconWhite = ContextCompat.getDrawable(view.context, R.drawable.ic_delete_white_24dp)!!
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val randomDoggo = adapter.removeItem(viewHolder)
+                favouritesPresenter.removeRandomDoggoFromDatabase(randomDoggo)
+            }
+
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+                val itemView = viewHolder.itemView
+
+                val iconMargin = (itemView.height - deleteIconWhite.intrinsicHeight) / 2
+
+                swipeBackground.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
+                swipeBackground.draw(c)
+
+                deleteIconWhite.setBounds(itemView.left + iconMargin, itemView.top + iconMargin,
+                        itemView.left + iconMargin + deleteIconWhite.intrinsicWidth, itemView.bottom - iconMargin)
+                deleteIconWhite.draw(c)
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(doggosRecyclerView)
     }
 }

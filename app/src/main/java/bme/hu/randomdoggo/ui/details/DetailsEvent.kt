@@ -1,4 +1,4 @@
-package bme.hu.randomdoggo.ui.favourites
+package bme.hu.randomdoggo.ui.details
 
 import bme.hu.randomdoggo.model.RandomDoggo
 

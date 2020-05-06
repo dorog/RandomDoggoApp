@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.model.RandomDoggo
+import bme.hu.randomdoggo.ui.details.DetailsEvent
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
 
 class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutableListOf()) : RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
+
+    private var byteFormat: String = "%02d byte"
 
     fun refresh(doggos: List<RandomDoggo>){
         doggoList.clear()
@@ -19,9 +22,9 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
         notifyDataSetChanged()
     }
 
-    fun removeItem(viewholder: RecyclerView.ViewHolder): RandomDoggo{
-        val randomDoggo = doggoList[viewholder.absoluteAdapterPosition]
-        doggoList.removeAt(viewholder.absoluteAdapterPosition)
+    fun removeItem(viewHolder: RecyclerView.ViewHolder): RandomDoggo{
+        val randomDoggo = doggoList[viewHolder.absoluteAdapterPosition]
+        doggoList.removeAt(viewHolder.absoluteAdapterPosition)
         notifyDataSetChanged()
 
         return randomDoggo
@@ -29,7 +32,6 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouritesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.doggo_item, parent, false)
-
         return FavouritesViewHolder(itemView)
     }
 
@@ -37,7 +39,7 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
         val currentItem = doggoList[position]
 
         holder.typeText.text = currentItem.type
-        holder.byteText.text = currentItem.fileSizeBytes.toString()  + " byte"
+        holder.byteText.text = String.format(byteFormat, currentItem.fileSizeBytes)
         Glide.with(holder.pictureImage)
                 .load(currentItem.url)
                 .into(holder.pictureImage)
@@ -55,6 +57,6 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
     class FavouritesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var pictureImage: ImageView = itemView.findViewById(R.id.picture)
         var typeText: TextView = itemView.findViewById(R.id.type)
-        var byteText: TextView = itemView.findViewById(R.id.byte_)
+        var byteText: TextView = itemView.findViewById(R.id.fileSizeBytes)
     }
 }

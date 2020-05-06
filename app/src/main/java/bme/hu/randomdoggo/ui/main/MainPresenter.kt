@@ -1,7 +1,7 @@
 package bme.hu.randomdoggo.ui.main
 
 import bme.hu.randomdoggo.ui.Presenter
-import bme.hu.randomdoggo.ui.favourites.DetailsEvent
+import bme.hu.randomdoggo.ui.details.DetailsEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

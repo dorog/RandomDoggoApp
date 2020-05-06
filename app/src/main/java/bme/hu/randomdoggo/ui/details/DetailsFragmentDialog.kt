@@ -29,7 +29,7 @@ class DetailsDialogFragment : DialogFragment() {
         val urlText = view.findViewById<View>(R.id.url) as TextView
         urlText.text = url
 
-        val byteText = view.findViewById<View>(R.id.byte_) as TextView
+        val byteText = view.findViewById<View>(R.id.fileSizeBytes) as TextView
         byteText.text = "$byte byte"
 
         val typeText = view.findViewById<View>(R.id.type) as TextView

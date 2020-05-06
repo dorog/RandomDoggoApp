@@ -16,8 +16,8 @@
     <string name="picture_image_view">Picture Image View</string>
     <string name="ok">OK</string>
     <string name="missing">Missing</string>
-    <string name="type">Type</string>
-    <string name="byte_">Byte</string>
+    <string name="type_title">Type:</string>
+    <string name="byte_title">Byte:</string>
     <string name="application_name">Application name:</string>
     <string name="randomdoggo">RandomDoggo</string>
     <string name="application_version">Application version:</string>

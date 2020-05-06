@@ -8,11 +8,6 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Singleton
 
-import bme.hu.randomdoggo.interactor.randomDoggo.RandomDoggoInteractor
-import bme.hu.randomdoggo.ui.details.DetailsPresenter
-import bme.hu.randomdoggo.ui.favourites.FavouritesPresenter
-import bme.hu.randomdoggo.ui.search.SearchPresenter
-
 @Module
 class UIModule(private val context: Context) {
 
@@ -22,18 +17,6 @@ class UIModule(private val context: Context) {
     @Provides
     @Singleton
     fun mainPresenter() = MainPresenter()
-
-   /* @Provides
-    @Singleton
-    fun searchPresenter(randomDoggoInteractor : RandomDoggoInteractor, executor: Executor) = SearchPresenter(executor, randomDoggoInteractor)
-
-    @Provides
-    @Singleton
-    fun favouritesPresenter(randomDoggoInteractor : RandomDoggoInteractor) = FavouritesPresenter(randomDoggoInteractor)
-
-    @Provides
-    @Singleton
-    fun detailsPresenter(randomDoggoInteractor : RandomDoggoInteractor) = DetailsPresenter(randomDoggoInteractor)*/
 
     @Provides
     @Singleton

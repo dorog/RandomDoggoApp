@@ -3,7 +3,6 @@ package bme.hu.randomdoggo
 import bme.hu.randomdoggo.interactor.InteractorModule
 import bme.hu.randomdoggo.network.NetworkModule
 import bme.hu.randomdoggo.ui.UIModule
-import bme.hu.randomdoggo.ui.details.DetailsFragment
 import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
 import bme.hu.randomdoggo.ui.main.MainActivity
 import bme.hu.randomdoggo.ui.search.SearchFragment
@@ -16,5 +15,4 @@ interface RandomDoggoApplicationComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(searchActivity: SearchFragment)
     fun inject(favouritesActivity: FavouritesFragment)
-    fun inject(detailsFragment: DetailsFragment)
 }

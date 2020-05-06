@@ -1,14 +1,6 @@
 package bme.hu.randomdoggo.ui.main
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import bme.hu.randomdoggo.R
-import bme.hu.randomdoggo.interactor.randomDoggo.event.GetRandomDoggoEvent
 import bme.hu.randomdoggo.ui.Presenter
-import bme.hu.randomdoggo.ui.details.DetailsFragment
 import bme.hu.randomdoggo.ui.favourites.DetailsEvent
 import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
 import bme.hu.randomdoggo.ui.search.SearchFragment
@@ -34,10 +26,6 @@ class MainPresenter : Presenter<MainScreen>() {
 
     fun showFavouritesFragment(){
         screen!!.showFragment(FavouritesFragment())
-    }
-
-    fun showDetailsFragment(){
-        screen!!.showFragment(DetailsFragment())
     }
 
     fun showCreditsFragment(){

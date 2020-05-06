@@ -1,5 +1,6 @@
 package bme.hu.randomdoggo.database.repository
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import bme.hu.randomdoggo.database.dao.RandomDoggoDao
@@ -11,6 +12,7 @@ class RandomDoggoRoomRepository(private val randomDoggoDao: RandomDoggoDao) : Ra
 
     @WorkerThread
     override fun addRandomDoggo(randomDoggo: RandomDoggo) {
+        Log.d("REPO", "" + randomDoggo.fileSizeBytes)
         randomDoggoDao.insert(randomDoggo)
     }
 

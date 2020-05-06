@@ -1,6 +1,7 @@
 package bme.hu.randomdoggo.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import bme.hu.randomdoggo.database.RandomDoggoRoomDatabase
@@ -28,6 +29,7 @@ class RandomDoggoViewModel(application: Application): AndroidViewModel(applicati
     }
 
     fun insert(randomDoggo: RandomDoggo) = scope.launch(Dispatchers.IO){
+        Log.d("VM", "" + randomDoggo.fileSizeBytes)
         repository.addRandomDoggo(randomDoggo)
     }
 

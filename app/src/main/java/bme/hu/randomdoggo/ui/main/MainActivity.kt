@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
 
         Log.d("RANDOMDOGGO", randomDoggo.url)
         Log.d("RANDOMDOGGO", "" + randomDoggo.type)
-        Log.d("RANDOMDOGGO", "" + randomDoggo.byte)
+        Log.d("RANDOMDOGGO", "" + randomDoggo.fileSizeBytes)
 
         val detailsDialogFragment = DetailsDialogFragment.newInstance(randomDoggo)
 

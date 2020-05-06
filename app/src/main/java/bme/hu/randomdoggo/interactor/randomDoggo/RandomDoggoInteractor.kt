@@ -1,5 +1,6 @@
 package bme.hu.randomdoggo.interactor.randomDoggo
 
+import android.util.Log
 import bme.hu.randomdoggo.interactor.randomDoggo.event.GetRandomDoggoEvent
 import bme.hu.randomdoggo.network.NetworkInteractor
 import bme.hu.randomdoggo.network.RandomDoggoApi

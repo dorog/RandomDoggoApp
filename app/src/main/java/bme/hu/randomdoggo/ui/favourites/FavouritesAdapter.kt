@@ -1,14 +1,10 @@
 package bme.hu.randomdoggo.ui.favourites
 
-import android.app.Dialog
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.model.RandomDoggo
@@ -40,15 +36,15 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
     override fun onBindViewHolder(holder: FavouritesViewHolder, position: Int) {
         val currentItem = doggoList[position]
 
-        //holder.imageView.setImageResource(currentItem.url)
-        holder.textView.text = currentItem.url
-        Glide.with(holder.imageView)
+        holder.typeText.text = currentItem.type
+        holder.byteText.text = currentItem.fileSizeBytes.toString()  + " byte"
+        Glide.with(holder.pictureImage)
                 .load(currentItem.url)
-                .into(holder.imageView)
+                .into(holder.pictureImage)
 
-        holder.imageView.setOnClickListener{
+        holder.pictureImage.setOnClickListener{
             val detailsEvent = DetailsEvent()
-            detailsEvent.randomDoggo = RandomDoggo(currentItem.id, currentItem.url, currentItem.byte, currentItem.type)
+            detailsEvent.randomDoggo = RandomDoggo(currentItem.id, currentItem.url, currentItem.fileSizeBytes, currentItem.type)
 
             EventBus.getDefault().post(detailsEvent)
         }
@@ -57,7 +53,8 @@ class FavouritesAdapter(private val doggoList: MutableList<RandomDoggo> = mutabl
     override fun getItemCount() = doggoList.size
 
     class FavouritesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView: ImageView = itemView.findViewById(R.id.picture)
-        var textView: TextView = itemView.findViewById(R.id.source)
+        var pictureImage: ImageView = itemView.findViewById(R.id.picture)
+        var typeText: TextView = itemView.findViewById(R.id.type)
+        var byteText: TextView = itemView.findViewById(R.id.byte_)
     }
 }

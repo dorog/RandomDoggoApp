@@ -54,7 +54,7 @@ class DetailsDialogFragment : DialogFragment() {
             val frag = DetailsDialogFragment()
             val args = Bundle()
             args.putString(url, randomDoggo.url)
-            args.putInt(byte, randomDoggo.byte)
+            args.putInt(byte, randomDoggo.fileSizeBytes)
             args.putString(type, randomDoggo.type)
             frag.arguments = args
             return frag

@@ -8,22 +8,21 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class RandomDoggo(
 
-    @PrimaryKey(autoGenerate = true)
+        @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     var id: Int? = null,
 
-    @ColumnInfo()
+        @ColumnInfo()
     @SerializedName("url")
     var url: String,
 
-    @ColumnInfo()
+        @ColumnInfo()
     @SerializedName("fileSizeBytes")
-    var byte: Int,
+    var fileSizeBytes: Int,
 
-    @ColumnInfo()
+        @ColumnInfo()
     @SerializedName("type")
     var type: String? = null
-
 
 ){
     constructor() : this(null, "", 0, null)
@@ -41,7 +40,7 @@ data class RandomDoggo(
     override fun hashCode(): Int {
         var result = id ?: 0
         result = 31 * result + url.hashCode()
-        result = 31 * result + byte
+        result = 31 * result + fileSizeBytes
         result = 31 * result + type.hashCode()
         return result
     }

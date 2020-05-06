@@ -1,8 +1,9 @@
 package bme.hu.randomdoggo.ui.search
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,8 +75,18 @@ class SearchFragment : Fragment(), SearchScreen {
     }
 
     override fun searchRandomDoggo() {
-        searchButton.isEnabled = false
-        searchPresenter.searchRandomDoggo()
+
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+
+        if(isConnected){
+            searchButton.isEnabled = false
+            searchPresenter.searchRandomDoggo()
+        }
+        else{
+            DynamicToast.makeError(context!!, "No internet connection!").show();
+        }
     }
 
     override fun showRandomDoggo(randomDoggo: RandomDoggo) {

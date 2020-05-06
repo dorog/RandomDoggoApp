@@ -12,14 +12,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
 import bme.hu.randomdoggo.model.RandomDoggo
-import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import javax.inject.Inject
 
@@ -27,8 +25,6 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
 
     @Inject
     lateinit var favouritesPresenter: FavouritesPresenter;
-
-    private lateinit var randomDoggoViewModel: RandomDoggoViewModel
 
     private val adapter by lazy { FavouritesAdapter() }
     private val manager by lazy { LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false) }
@@ -66,19 +62,20 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        randomDoggoViewModel = ViewModelProviders.of(this).get(RandomDoggoViewModel::class.java)
-        randomDoggoViewModel.randomDoggos.observe(this, Observer { savedRandomDoggos: List<RandomDoggo> ->
+        favouritesPresenter.getRandomDoggos().observe(this, Observer { savedRandomDoggos: List<RandomDoggo> ->
             randomDoggos = savedRandomDoggos
             showFavourites()
         })
     }
+
 
     override fun showFavourites() {
         adapter.refresh(randomDoggos)
     }
 
     override fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo) {
-        randomDoggoViewModel.delete(randomDoggo)
+        favouritesPresenter.removeRandomDoggoFromDatabase(randomDoggo)
+        randomDoggos = randomDoggos.filter { x -> x != randomDoggo }
         DynamicToast.make(activity!!, successFullyDeletedMessage, deleteIconWhite).show();
     }
 
@@ -98,7 +95,7 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val randomDoggo = adapter.removeItem(viewHolder)
-                favouritesPresenter.removeRandomDoggoFromDatabase(randomDoggo)
+                removeRandomDoggoFromDatabase(randomDoggo)
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {

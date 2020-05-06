@@ -9,5 +9,6 @@ class RandomDoggoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         injector = DaggerRandomDoggoApplicationComponent.builder().uIModule(UIModule(this)).build()
+
     }
 }

@@ -10,11 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import bme.hu.randomdoggo.R
 import bme.hu.randomdoggo.injector
 import bme.hu.randomdoggo.model.RandomDoggo
-import bme.hu.randomdoggo.viewmodel.RandomDoggoViewModel
 import com.bumptech.glide.Glide
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import kotlinx.android.synthetic.main.fragment_search.view.*
@@ -24,7 +22,6 @@ class SearchFragment : Fragment(), SearchScreen {
 
     @Inject
     lateinit var searchPresenter: SearchPresenter
-    private lateinit var randomDoggoViewModel: RandomDoggoViewModel
 
     private lateinit var randomDoggoPicture: ImageView
     private lateinit var addToFavouritesButton: Button
@@ -37,7 +34,7 @@ class SearchFragment : Fragment(), SearchScreen {
 
         addToFavouritesButton = view.add_to_favourites
         addToFavouritesButton.setOnClickListener{ _ ->
-            searchPresenter.addRandomDoggoToDatabase()
+            addRandomDoggoToFavourites()
             DynamicToast.makeSuccess(context!!, "Successfully added!").show();
         }
 
@@ -62,11 +59,6 @@ class SearchFragment : Fragment(), SearchScreen {
     override fun onDetach() {
         searchPresenter.detachScreen()
         super.onDetach()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        randomDoggoViewModel = ViewModelProviders.of(this).get(RandomDoggoViewModel::class.java)
     }
 
     override fun onStop() {
@@ -103,7 +95,7 @@ class SearchFragment : Fragment(), SearchScreen {
     }
 
     override fun addRandomDoggoToFavourites() {
-        randomDoggoViewModel.insert(currentRandomDoggo!!)
+        searchPresenter.addRandomDoggoToDatabase(currentRandomDoggo!!)
         addToFavouritesButton.isEnabled = false
     }
 

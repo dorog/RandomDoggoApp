@@ -1,33 +1,34 @@
-package bme.hu.randomdoggo.database.repository
+package bme.hu.randomdoggo.mock
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import bme.hu.randomdoggo.database.dao.RandomDoggoDao
 import bme.hu.randomdoggo.model.RandomDoggo
 
-class RandomDoggoMockRepository : RandomDoggoRepository {
+class MockDao : RandomDoggoDao {
 
     private var database: MutableLiveData<List<RandomDoggo>> = MutableLiveData()
 
-    override fun addRandomDoggo(randomDoggo: RandomDoggo) {
-        randomDoggo.id = lastId
+    override fun getAll(): LiveData<List<RandomDoggo>> {
+        return database
+    }
+
+    override fun insert(randomdoggo: RandomDoggo) {
+        randomdoggo.id = lastId
         lastId++
 
 
         val list = mutableListOf<RandomDoggo>();
         list.addAll(database.value!!)
-        list.add(randomDoggo)
+        list.add(randomdoggo)
 
         database.postValue(list)
     }
 
-    override fun removeRandomDoggo(randomDoggo: RandomDoggo) {
+    override fun delete(randomdoggo: RandomDoggo) {
         val list = mutableListOf<RandomDoggo>();
-        list.remove(randomDoggo)
+        list.remove(randomdoggo)
         database.postValue(list)
-    }
-
-    override fun getAllRandomDoggo(): LiveData<List<RandomDoggo>> {
-        return database
     }
 
     companion object {

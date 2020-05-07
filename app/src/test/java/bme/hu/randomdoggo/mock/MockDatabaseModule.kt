@@ -1,14 +1,14 @@
 package bme.hu.randomdoggo.mock
 
-import android.content.Context
-import bme.hu.randomdoggo.database.RandomDoggoRoomDatabase
+import bme.hu.randomdoggo.database.dao.RandomDoggoDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
 class MockDatabaseModule {
+
     @Provides
     @Singleton
-    fun getDatabase(context: Context): RandomDoggoRoomDatabase = MockDatabase()
+    fun provideRandomDoggoDao(): RandomDoggoDao = MockDao()
 }

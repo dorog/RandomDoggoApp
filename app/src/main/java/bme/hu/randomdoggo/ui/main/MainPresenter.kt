@@ -5,8 +5,9 @@ import bme.hu.randomdoggo.ui.details.DetailsEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import javax.inject.Inject
 
-class MainPresenter : Presenter<MainScreen>() {
+class MainPresenter @Inject constructor(): Presenter<MainScreen>() {
 
     override fun attachScreen(screen: MainScreen) {
         EventBus.getDefault().register(this)

@@ -2,7 +2,9 @@ package bme.hu.randomdoggo.ui.favourites
 
 import androidx.lifecycle.LiveData
 import bme.hu.randomdoggo.database.RandomDoggoRoomDatabase
+import bme.hu.randomdoggo.database.dao.RandomDoggoDao
 import bme.hu.randomdoggo.database.repository.RandomDoggoRepository
+import bme.hu.randomdoggo.database.repository.RandomDoggoRoomRepository
 import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.ui.Presenter
 import kotlinx.coroutines.CoroutineScope
@@ -12,9 +14,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class FavouritesPresenter @Inject constructor(randomDoggoRoomDatabase: RandomDoggoRoomDatabase): Presenter<FavouritesScreen>() {
+class FavouritesPresenter @Inject constructor(randomDoggoDao: RandomDoggoDao): Presenter<FavouritesScreen>() {
 
-    private var randomDoggoRoomRepository: RandomDoggoRepository
+    private var randomDoggoRoomRepository: RandomDoggoRepository = RandomDoggoRoomRepository(randomDoggoDao)
     private val randomDoggos: LiveData<List<RandomDoggo>>
 
     private var parentJob = Job()
@@ -22,7 +24,6 @@ class FavouritesPresenter @Inject constructor(randomDoggoRoomDatabase: RandomDog
     private val scope = CoroutineScope(coroutineContext)
 
     init{
-        randomDoggoRoomRepository = randomDoggoRoomDatabase.randomDoggoRepository()
         randomDoggos = randomDoggoRoomRepository.getAllRandomDoggo()
     }
 

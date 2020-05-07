@@ -1,7 +1,9 @@
 package bme.hu.randomdoggo.ui.search
 
 import bme.hu.randomdoggo.database.RandomDoggoRoomDatabase
+import bme.hu.randomdoggo.database.dao.RandomDoggoDao
 import bme.hu.randomdoggo.database.repository.RandomDoggoRepository
+import bme.hu.randomdoggo.database.repository.RandomDoggoRoomRepository
 import bme.hu.randomdoggo.interactor.randomDoggo.RandomDoggoInteractor
 import bme.hu.randomdoggo.interactor.randomDoggo.event.GetRandomDoggoEvent
 import bme.hu.randomdoggo.model.RandomDoggo
@@ -17,7 +19,7 @@ import java.util.concurrent.Executor
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class SearchPresenter  @Inject constructor(private val executor: Executor, private val randomDoggoInteractor: RandomDoggoInteractor, private val randomDoggoRoomDatabase: RandomDoggoRoomDatabase): Presenter<SearchScreen>() {
+class SearchPresenter  @Inject constructor(private val executor: Executor, private val randomDoggoInteractor: RandomDoggoInteractor, randomDoggoDao: RandomDoggoDao): Presenter<SearchScreen>() {
 
     private var randomDoggoRoomRepository: RandomDoggoRepository
 
@@ -26,7 +28,7 @@ class SearchPresenter  @Inject constructor(private val executor: Executor, priva
     private val scope = CoroutineScope(coroutineContext)
 
     init{
-        randomDoggoRoomRepository = randomDoggoRoomDatabase.randomDoggoRepository()
+        randomDoggoRoomRepository = RandomDoggoRoomRepository(randomDoggoDao)
     }
 
     override fun attachScreen(screen: SearchScreen) {

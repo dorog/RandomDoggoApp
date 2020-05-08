@@ -1,6 +1,6 @@
 package bme.hu.randomdoggo.mock
 
-import bme.hu.randomdoggo.database.dao.RandomDoggoDao
+import bme.hu.randomdoggo.database.repository.RandomDoggoRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,5 +10,5 @@ class MockDatabaseModule {
 
     @Provides
     @Singleton
-    fun provideRandomDoggoDao(): RandomDoggoDao = MockDao()
+    fun provideRandomDoggoRepository(): RandomDoggoRepository = MockRepository()
 }

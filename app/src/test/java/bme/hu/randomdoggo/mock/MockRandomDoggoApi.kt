@@ -12,7 +12,6 @@ import java.io.IOException
 class MockRandomDoggoApi : RandomDoggoApi{
 
     override fun getRandomDoggo(): Call<RandomDoggo> {
-        val randomDoggo = RandomDoggo(null, "https://random.dog/6d7c676e-e48d-4e53-9f4d-46561ce429c1.JPG", 50, null)
 
         val call = object : Call<RandomDoggo> {
             override fun enqueue(callback: Callback<RandomDoggo>?) {
@@ -49,5 +48,9 @@ class MockRandomDoggoApi : RandomDoggoApi{
         }
 
         return call
+    }
+
+    companion object{
+        var randomDoggo = RandomDoggo(null, "https://random.dog/6d7c676e-e48d-4e53-9f4d-46561ce429c1.JPG", 50, null)
     }
 }

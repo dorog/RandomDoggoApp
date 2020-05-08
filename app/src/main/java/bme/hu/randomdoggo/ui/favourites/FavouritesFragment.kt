@@ -68,7 +68,6 @@ class FavouritesFragment : Fragment(), FavouritesScreen {
         })
     }
 
-
     override fun showFavourites() {
         adapter.refresh(randomDoggos)
     }

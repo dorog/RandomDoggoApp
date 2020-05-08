@@ -3,6 +3,8 @@ package bme.hu.randomdoggo.database
 import android.content.Context
 import androidx.room.Room
 import bme.hu.randomdoggo.database.dao.RandomDoggoDao
+import bme.hu.randomdoggo.database.repository.RandomDoggoRepository
+import bme.hu.randomdoggo.database.repository.RandomDoggoRoomRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -20,4 +22,8 @@ class DatabaseModule() {
     @Provides
     @Singleton
     fun provideRandomDoggoDao(context: Context): RandomDoggoDao = getDatabase(context).randomDoggoDao()
+
+    @Provides
+    @Singleton
+    fun provideRandomDoggoRepository(randomDoggoDao: RandomDoggoDao): RandomDoggoRepository = RandomDoggoRoomRepository(randomDoggoDao)
 }

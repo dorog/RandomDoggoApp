@@ -4,5 +4,6 @@ import bme.hu.randomdoggo.model.RandomDoggo
 
 interface SearchScreen {
     fun searchRandomDoggo()
-    fun addRandomDoggoToFavourites(randomDoggo: RandomDoggo)
+    fun showRandomDoggo(randomDoggo: RandomDoggo)
+    fun addRandomDoggoToFavourites()
 }

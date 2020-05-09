@@ -13,9 +13,9 @@ class RandomDoggoInteractor @Inject constructor(private var randomDoggoApi: Rand
 
         try {
 
-            val jokeCall = randomDoggoApi.getRandomDoggo()
+            val randomDoggoCall = randomDoggoApi.getRandomDoggo()
 
-            val response = jokeCall.execute()
+            val response = randomDoggoCall.execute()
 
             event.randomDoggo = response.body()
             event.code = response.code()

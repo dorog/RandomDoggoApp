@@ -15,4 +15,7 @@ interface RandomDoggoDao {
 
     @Delete
     fun delete(randomdoggo: RandomDoggo)
+
+    @Query("DELETE FROM randomdoggo")
+    fun deleteAll()
 }

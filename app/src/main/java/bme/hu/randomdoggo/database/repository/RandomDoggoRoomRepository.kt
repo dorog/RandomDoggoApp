@@ -23,5 +23,8 @@ class RandomDoggoRoomRepository(private val randomDoggoDao: RandomDoggoDao) : Ra
         return allRandomDoggo
     }
 
-
+    @WorkerThread
+    override fun deleteAll() {
+        randomDoggoDao.deleteAll()
+    }
 }

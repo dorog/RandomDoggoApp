@@ -1,6 +1,30 @@
 <resources>
     <string name="app_name">RandomDoggo</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_menu">Search</string>
+    <string name="favourites_menu">Favourites</string>
+    <string name="credits_menu">Credits</string>
+    <string name = "navigation_drawer_open">Open Navigation drawer</string>
+    <string name = "navigation_drawer_close">Close Navigation drawer</string>
+    <string name="randomdoggo_picture">RandomDoggo picture</string>
+    <string name="random_picture">Random Picture</string>
+    <string name="add_to_favourites">Add to Favourites</string>
+    <string name="random_doggo">Random Doggo</string>
+    <string name="cuz_we_lovin_dogs">\'Cuz we lovin\' dogs!</string>
+    <string name="transparent_header_icon">Transparent header icon</string>
+    <string name="place_holder_text">text</string>
+    <string name="picture_image_view">Picture Image View</string>
+    <string name="ok">OK</string>
+    <string name="missing">Missing</string>
+    <string name="type_title">Type:</string>
+    <string name="byte_title">Byte:</string>
+    <string name="application_name">Application name:</string>
+    <string name="randomdoggo">RandomDoggo</string>
+    <string name="application_version">Application version:</string>
+    <string name="app_version">1.0</string>
+    <string name="github">GitHub:</string>
+    <string name="github_url">https://github.com/dorog/RandomDoggoApp</string>
+    <string name="developer">Developer:</string>
+    <string name="developer_name">Gábor Dorogi-Kovács</string>
+    <string name="url_title">URL:</string>
 </resources>

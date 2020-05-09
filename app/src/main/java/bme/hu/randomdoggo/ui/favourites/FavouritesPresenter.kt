@@ -1,18 +1,21 @@
 package bme.hu.randomdoggo.ui.favourites
 
-import bme.hu.randomdoggo.interactor.randomDoggo.RandomDoggoInteractor
+import androidx.lifecycle.LiveData
+import bme.hu.randomdoggo.database.repository.RandomDoggoRepository
+import bme.hu.randomdoggo.model.RandomDoggo
 import bme.hu.randomdoggo.ui.Presenter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FavouritesPresenter  @Inject constructor(protected val randomDoggoInteractor: RandomDoggoInteractor) : Presenter<FavouritesScreen>() {
+class FavouritesPresenter @Inject constructor(private var randomDoggoRepository: RandomDoggoRepository, private var scope: CoroutineScope): Presenter<FavouritesScreen>() {
 
-    override fun attachScreen(screen: FavouritesScreen) {
-        super.attachScreen(screen)
+    fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo) = scope.launch(Dispatchers.IO){
+        randomDoggoRepository.removeRandomDoggo(randomDoggo)
     }
 
-    override fun detachScreen() {
-        super.detachScreen()
+    fun getRandomDoggos(): LiveData<List<RandomDoggo>>{
+        return randomDoggoRepository.getAllRandomDoggo()
     }
-
-    fun getAllRandomDoggoFromDatabase(){}
 }

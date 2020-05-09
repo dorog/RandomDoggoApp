@@ -16,17 +16,25 @@ import bme.hu.randomdoggo.ui.details.DetailsDialogFragment
 import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
 import bme.hu.randomdoggo.ui.search.SearchFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.main_activity.*
 import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     @Inject
     lateinit var mainPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
+        firebaseLog("Main Activity: Create")
+
         setContentView(R.layout.main_activity)
         injector.inject(this)
 
@@ -49,14 +57,20 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         mainPresenter.attachScreen(this)
 
         setDefaultFragment()
+
+        firebaseLog("Main Activity: Start")
     }
 
     override fun onStop() {
+        firebaseLog("Main Activity: Stop")
+
         mainPresenter.detachScreen()
         super.onStop()
     }
 
     override fun onBackPressed() {
+        firebaseLog("Main Activity: BackPressed")
+
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
@@ -65,6 +79,8 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        firebaseLog("Main Activity: NavigationItemSelected")
+
         when (item.itemId) {
             R.id.nav_search -> {
                 mainPresenter.showSearch()
@@ -82,12 +98,16 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
     }
 
     private fun setDefaultFragment(){
+        firebaseLog("Main Activity: Set Default Fragment")
+
         val defaultFragment = nav_view.menu.getItem(0)
         onNavigationItemSelected(defaultFragment);
         defaultFragment.isChecked = true
     }
 
     private fun showFragment(fragment: Fragment) {
+        firebaseLog("Main Activity: ShowFragment")
+
         nav_view.menu.close()
         supportFragmentManager
                 .beginTransaction()
@@ -97,22 +117,32 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
     }
 
     override fun showSearch() {
+        firebaseLog("Main Activity: ShowSearch")
         showFragment(SearchFragment())
     }
 
     override fun showFavourites() {
+        firebaseLog("Main Activity: ShowFavourites")
         showFragment(FavouritesFragment())
     }
 
     override fun showCredits() {
+        firebaseLog("Main Activity: ShowCredits")
         showFragment(CreditsFragment())
     }
 
     override fun showDetails(randomDoggo: RandomDoggo) {
+        firebaseLog("Main Activity: ShowDetails")
         val fm: FragmentManager = supportFragmentManager
 
         val detailsDialogFragment = DetailsDialogFragment.newInstance(randomDoggo)
 
         detailsDialogFragment.show(fm, "details_dialog_fragment")
+    }
+
+    private fun firebaseLog(msg: String){
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, msg)
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 }

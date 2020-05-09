@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "726170626058",
+    "firebase_url": "https://randomdoggo-3b2dd.firebaseio.com",
+    "project_id": "randomdoggo-3b2dd",
+    "storage_bucket": "randomdoggo-3b2dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726170626058:android:23f4bd6cb70b7fe9f0d7f3",
+        "android_client_info": {
+          "package_name": "bme.hu.randomdoggo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726170626058-dnp115b5hpbubjt5hvehdbh7v1fo864l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN-HJS_W4OYTEtgfOGPL6BSuiiMpq5-9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726170626058-dnp115b5hpbubjt5hvehdbh7v1fo864l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

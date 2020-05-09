@@ -67,13 +67,13 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_search -> {
-                mainPresenter.showSearchFragment()
+                mainPresenter.showSearch()
             }
             R.id.nav_favourites -> {
-                mainPresenter.showFavouritesFragment()
+                mainPresenter.showFavourites()
             }
             R.id.nav_credits -> {
-                mainPresenter.showCreditsFragment()
+                mainPresenter.showCredits()
             }
         }
 

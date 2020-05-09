@@ -16,11 +16,14 @@ import java.util.concurrent.Executor
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class SearchPresenter  @Inject constructor(private val executor: Executor, private val randomDoggoInteractor: RandomDoggoInteractor, private var randomDoggoRepository: RandomDoggoRepository): Presenter<SearchScreen>() {
+class SearchPresenter  @Inject constructor(private val executor: Executor,
+                                           private val randomDoggoInteractor: RandomDoggoInteractor,
+                                           private var randomDoggoRepository: RandomDoggoRepository,
+                                           private var scope: CoroutineScope): Presenter<SearchScreen>() {
 
-    private var parentJob = Job()
+    /*private var parentJob = Job()
     private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Main
-    private val scope = CoroutineScope(coroutineContext)
+    private val scope = CoroutineScope(coroutineContext)*/
 
     override fun attachScreen(screen: SearchScreen) {
         super.attachScreen(screen)

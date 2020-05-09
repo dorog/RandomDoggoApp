@@ -11,19 +11,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class FavouritesPresenter @Inject constructor(private var randomDoggoRepository: RandomDoggoRepository): Presenter<FavouritesScreen>() {
+class FavouritesPresenter @Inject constructor(private var randomDoggoRepository: RandomDoggoRepository, private var scope: CoroutineScope): Presenter<FavouritesScreen>() {
 
-    private val randomDoggos: LiveData<List<RandomDoggo>> = randomDoggoRepository.getAllRandomDoggo()
-
-    private var parentJob = Job()
+    /*private var parentJob = Job()
     private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Main
-    private val scope = CoroutineScope(coroutineContext)
+    private val scope = CoroutineScope(coroutineContext)*/
 
-    fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo)= scope.launch(Dispatchers.IO){
+    fun removeRandomDoggoFromDatabase(randomDoggo: RandomDoggo) = scope.launch(Dispatchers.IO){
         randomDoggoRepository.removeRandomDoggo(randomDoggo)
     }
 
     fun getRandomDoggos(): LiveData<List<RandomDoggo>>{
-        return randomDoggos
+        return randomDoggoRepository.getAllRandomDoggo()
     }
 }

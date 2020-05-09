@@ -18,6 +18,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [28])
 class SearchTest{
@@ -29,8 +30,6 @@ class SearchTest{
     lateinit var mockRepository: RandomDoggoRepository
     private var randomDoggo = RandomDoggo(-1, "http://mock/mock.jpg", 1234, null)
     private var randomDoggo2 = RandomDoggo(0, "http://mock/mock.jpg", 1234, null)
-
-
 
     private lateinit var searchScreen: SearchScreen
 
@@ -44,24 +43,25 @@ class SearchTest{
         mockRepository.addRandomDoggo(randomDoggo)
     }
 
-    @ExperimentalCoroutinesApi
-    @Test
-    fun addToDatabaseTest(){
-        runBlockingTest {
-            searchPresenter.addRandomDoggoToDatabase(randomDoggo2)
-        }
-        val size = mockRepository.getAllRandomDoggo().value?.size
-        assert(size == 2)
-    }
-
     @Test
     fun searchTest(){
         searchPresenter.searchRandomDoggo()
         verify(searchScreen).showRandomDoggo(MockRandomDoggoApi.randomDoggo)
     }
 
+    @Test
+    fun addToDatabaseTest(){
+        runBlockingTest {
+            searchPresenter.addRandomDoggoToDatabase(randomDoggo2)
+        }
+
+        val size = mockRepository.getAllRandomDoggo().value?.size
+        assert(size == 2)
+    }
+
     @After
     fun tearDown() {
         searchPresenter.detachScreen()
+        mockRepository.deleteAll()
     }
 }

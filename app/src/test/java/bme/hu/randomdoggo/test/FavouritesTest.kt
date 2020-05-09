@@ -14,8 +14,9 @@ import org.robolectric.annotation.Config
 import javax.inject.Inject
 import com.nhaarman.mockito_kotlin.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 
+@ExperimentalCoroutinesApi
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [28])
 class FavouritesTest{
@@ -46,12 +47,13 @@ class FavouritesTest{
         assert(size == 1)
     }
 
-    @ExperimentalCoroutinesApi
+
     @Test
     fun removeRandomDoggoTest(){
-        runBlockingTest {
+        runBlocking {
             favouritesPresenter.removeRandomDoggoFromDatabase(randomDoggo)
         }
+
         val size = mockRepository.getAllRandomDoggo().value?.size
         assert(size == 0)
     }
@@ -59,5 +61,6 @@ class FavouritesTest{
     @After
     fun tearDown() {
         favouritesPresenter.detachScreen()
+        mockRepository.deleteAll()
     }
 }

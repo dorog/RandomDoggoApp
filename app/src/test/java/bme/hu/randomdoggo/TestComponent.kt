@@ -4,6 +4,7 @@ import bme.hu.randomdoggo.interactor.InteractorModule
 import bme.hu.randomdoggo.mock.MockDatabaseModule
 import bme.hu.randomdoggo.mock.MockNetworkModule
 import bme.hu.randomdoggo.test.FavouritesTest
+import bme.hu.randomdoggo.test.MainTest
 import bme.hu.randomdoggo.test.SearchTest
 import dagger.Component
 import javax.inject.Singleton
@@ -13,4 +14,5 @@ import javax.inject.Singleton
 interface TestComponent : RandomDoggoApplicationComponent{
     fun inject(favouritesTest: FavouritesTest)
     fun inject(searchTest: SearchTest)
+    fun inject(mainTest: MainTest)
 }

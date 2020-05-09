@@ -1,6 +1,5 @@
 package bme.hu.randomdoggo.database.repository
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import bme.hu.randomdoggo.database.dao.RandomDoggoDao
@@ -22,5 +21,10 @@ class RandomDoggoRoomRepository(private val randomDoggoDao: RandomDoggoDao) : Ra
 
     override fun getAllRandomDoggo(): LiveData<List<RandomDoggo>> {
         return allRandomDoggo
+    }
+
+    @WorkerThread
+    override fun deleteAll() {
+        randomDoggoDao.deleteAll()
     }
 }

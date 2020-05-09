@@ -19,15 +19,15 @@ class MainPresenter @Inject constructor(): Presenter<MainScreen>() {
         super.detachScreen()
     }
 
-    fun showSearchFragment(){
+    fun showSearch(){
         screen!!.showSearch()
     }
 
-    fun showFavouritesFragment(){
+    fun showFavourites(){
         screen!!.showFavourites()
     }
 
-    fun showCreditsFragment(){
+    fun showCredits(){
         screen!!.showCredits()
     }
 

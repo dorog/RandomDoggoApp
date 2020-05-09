@@ -7,4 +7,5 @@ interface RandomDoggoRepository {
     fun addRandomDoggo(randomDoggo: RandomDoggo)
     fun removeRandomDoggo(randomDoggo: RandomDoggo)
     fun getAllRandomDoggo() : LiveData<List<RandomDoggo>>
+    fun deleteAll()
 }

@@ -17,6 +17,7 @@ import bme.hu.randomdoggo.ui.favourites.FavouritesFragment
 import bme.hu.randomdoggo.ui.search.SearchFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.android.synthetic.main.main_activity.*
 import javax.inject.Inject
 
@@ -24,6 +25,8 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var firebaseCrashlytics: FirebaseCrashlytics
+    private var mainActivityKey = "MainActivity"
 
     @Inject
     lateinit var mainPresenter: MainPresenter
@@ -32,6 +35,8 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         super.onCreate(savedInstanceState)
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        firebaseCrashlytics = FirebaseCrashlytics.getInstance()
+
 
         firebaseLog("Main Activity: Create")
 
@@ -144,5 +149,7 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, msg)
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
+
+        firebaseCrashlytics.setCustomKey(mainActivityKey, msg);
     }
 }
